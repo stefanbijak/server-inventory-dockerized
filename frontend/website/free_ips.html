@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free IPs — NetInventory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app" role="application">
+
+  <!-- HEADER / NAVBAR -->
+  <header>
+
+    <a href="index.html" class="nav-brand">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="6" rx="2"/>
+        <rect x="2" y="15" width="20" height="6" rx="2"/>
+        <line x1="6" y1="6" x2="6.01" y2="6"/>
+        <line x1="6" y1="18" x2="6.01" y2="18"/>
+      </svg>
+      IPTV Servers
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html"     class="nav-link">Servers</a></li>
+      <li><a href="vlans.html"     class="nav-link">VLANs</a></li>
+      <li><a href="inventory.html" class="nav-link">Inventory</a></li>
+      <li><a href="free_ips.html"  class="nav-link active">Free IPs</a></li>
+    </ul>
+
+    <div class="nav-right">
+      
+    </div>
+
+  </header>
+
+  <!-- TWO COLUMN LAYOUT -->
+  <div class="miller-columns">
+
+    <!-- LEFT: VLAN LIST -->
+    <div class="col col-groups">
+      <div class="col-head">
+        <h2>VLANs</h2>
+      </div>
+      <!-- VLAN items injected here -->
+      <ul class="list" id="vlan-list" role="listbox" aria-label="VLANs"></ul>
+    </div>
+
+    <!-- RIGHT: FREE IPs -->
+    <div class="col">
+      <div class="col-head">
+        <h2>Available IPs</h2>
+      </div>
+      <!-- Content injected here -->
+      <div class="detail-body" id="ip-body"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="free_ips.js"></script>
+</body>
+</html>

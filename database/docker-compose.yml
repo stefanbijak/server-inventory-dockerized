@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  database:
+    image: mysql:latest
+    container_name: database
+    ports:
+      - 3307:3306
+    volumes:
+      - ./mysql_template.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      backend:
+        ipv4_address: 192.168.10.10
+    env_file:
+      - database.env
+
+volumes:
+  mysql_data:
+
+networks:
+  backend:
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
+          gateway: 192.168.10.1

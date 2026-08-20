@@ -1,0 +1,13 @@
+# Ignoriši sve .env fajlove bilo gde u projektu
+*.env
+.env*
+
+# Ignoriši virtuelna okruženja i Python cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Ignoriši IDE/Editor podešavanja
+.vscode/
+.idea/

@@ -1,0 +1,5 @@
+uvicorn
+fastapi
+mysql-connector-python
+python-dotenv
+netaddr
