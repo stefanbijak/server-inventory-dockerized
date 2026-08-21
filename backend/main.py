@@ -1,6 +1,7 @@
 import socket
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 import service
 from models import Group,Server,Interface,Vlan
 
@@ -9,6 +10,8 @@ local_ip = socket.gethostbyname(hostname)
 
 app = FastAPI()
 
+Instrumentator().instrument(app).expose(app)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,6 +19,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+@app.get("/api/health")
+def health():
+    return {"status":"ok"}
 
 # ── GROUPS ──────────────────────────────────────────────────
 

@@ -44,8 +44,47 @@ services:
     networks:
       frontend:
         ipv4_address: 192.168.20.10
+  mysql-exporter:
+    image: prom/mysqld-exporter:v0.15.1
+    container_name: mysql_exporter
+    environment:
+      - DATA_SOURCE_NAME=root:1234@(database:3306)/iptv_db
+    command:
+      - '--mysqld.address=database:3306'
+      - '--mysqld.username=root:1234'
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      backend:
+        ipv4_address: 192.168.10.30
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: prometheus
+    ports:
+      - 9091:9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      backend:
+        ipv4_address: 192.168.10.40
+      frontend:
+        ipv4_address: 192.168.20.40
+  grafana:
+    image: grafana/grafana:10.0.0
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      frontend:
+        ipv4_address: 192.168.20.50
 volumes:
   mysql_data:
+  prometheus_data:
+  grafana_data:
 networks:
   backend:
     ipam:

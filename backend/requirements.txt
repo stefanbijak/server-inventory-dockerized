@@ -3,3 +3,4 @@ fastapi
 mysql-connector-python
 python-dotenv
 netaddr
+prometheus-fastapi-instrumentator
